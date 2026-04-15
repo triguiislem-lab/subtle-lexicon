@@ -1,10 +1,8 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
-import { BookOpen, Upload, Brain, Trophy, Sparkles, Play, ChevronRight, Star, Zap, Globe, Check, Film, Tv } from "lucide-react";
+import { BookOpen, Upload, Brain, Trophy, Sparkles, Play, ChevronRight, Star, Zap, Globe, Check, Film } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
-import Autoplay from "embla-carousel-autoplay";
 
+import heroImg from "@/assets/hero-cinematic.jpg";
 import suitsImg from "@/assets/show-suits.jpg";
 import breakingBadImg from "@/assets/show-breaking-bad.jpg";
 import strangerThingsImg from "@/assets/show-stranger-things.jpg";
@@ -27,12 +25,12 @@ const steps = [
 ];
 
 const shows = [
-  { name: "Suits", genre: "Legal Drama", words: "2,400+", image: suitsImg, color: "from-blue-600/80 to-amber-500/80" },
-  { name: "Breaking Bad", genre: "Crime Drama", words: "3,100+", image: breakingBadImg, color: "from-green-600/80 to-yellow-500/80" },
-  { name: "Stranger Things", genre: "Sci-Fi", words: "1,900+", image: strangerThingsImg, color: "from-purple-600/80 to-red-500/80" },
-  { name: "Friends", genre: "Comedy", words: "2,800+", image: friendsImg, color: "from-amber-500/80 to-orange-500/80" },
-  { name: "Game of Thrones", genre: "Fantasy", words: "3,500+", image: gotImg, color: "from-blue-800/80 to-cyan-500/80" },
-  { name: "The Office", genre: "Workplace Comedy", words: "2,200+", image: officeImg, color: "from-gray-600/80 to-blue-400/80" },
+  { name: "Suits", genre: "Legal Drama", words: "2,400+", image: suitsImg },
+  { name: "Breaking Bad", genre: "Crime Drama", words: "3,100+", image: breakingBadImg },
+  { name: "Stranger Things", genre: "Sci-Fi", words: "1,900+", image: strangerThingsImg },
+  { name: "Friends", genre: "Comedy", words: "2,800+", image: friendsImg },
+  { name: "Game of Thrones", genre: "Fantasy", words: "3,500+", image: gotImg },
+  { name: "The Office", genre: "Workplace Comedy", words: "2,200+", image: officeImg },
 ];
 
 const plans = [
@@ -45,7 +43,7 @@ export default function LandingPage() {
   return (
     <div className="min-h-screen bg-background">
       {/* Nav */}
-      <nav className="fixed top-0 left-0 right-0 z-50 glass border-b">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-background/60 backdrop-blur-xl border-b border-border/50">
         <div className="container flex items-center justify-between h-16">
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 rounded-lg gradient-accent flex items-center justify-center">
@@ -56,6 +54,7 @@ export default function LandingPage() {
           <div className="hidden md:flex items-center gap-8 text-sm text-muted-foreground">
             <a href="#features" className="hover:text-foreground transition-colors">Features</a>
             <a href="#how-it-works" className="hover:text-foreground transition-colors">How it works</a>
+            <a href="#shows" className="hover:text-foreground transition-colors">Shows</a>
             <a href="#pricing" className="hover:text-foreground transition-colors">Pricing</a>
           </div>
           <div className="flex items-center gap-3">
@@ -69,39 +68,98 @@ export default function LandingPage() {
         </div>
       </nav>
 
-      {/* Hero */}
-      <section className="pt-32 pb-20 px-4 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-30">
-          <div className="absolute top-20 left-1/4 w-72 h-72 bg-primary/20 rounded-full blur-3xl" />
-          <div className="absolute bottom-20 right-1/4 w-96 h-96 bg-accent/20 rounded-full blur-3xl" />
-        </div>
-        <div className="container relative text-center max-w-4xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-8 animate-fade-in">
+      {/* Hero — Full-bleed cinematic background */}
+      <section className="relative min-h-[100vh] flex items-center justify-center overflow-hidden">
+        {/* Background Image */}
+        <img
+          src={heroImg}
+          alt="Cinematic scene"
+          className="absolute inset-0 w-full h-full object-cover"
+          width={1920}
+          height={1080}
+        />
+        {/* Dark overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/50 to-background" />
+        <div className="absolute inset-0 bg-gradient-to-r from-background/60 via-transparent to-background/60" />
+
+        {/* Content */}
+        <div className="relative z-10 text-center max-w-4xl mx-auto px-4 pt-16">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/20 backdrop-blur-sm text-primary text-sm font-medium mb-8 animate-fade-in border border-primary/30">
             <Zap className="w-3.5 h-3.5" />
             Learn English from the shows you love
           </div>
-          <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tight mb-6 animate-fade-in" style={{ animationDelay: "0.1s" }}>
-            Master English with{" "}
-            <span className="gradient-text">Subtitle Coach</span>
+          <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tight mb-6 animate-fade-in text-white drop-shadow-2xl" style={{ animationDelay: "0.1s" }}>
+            Watch. Learn.{" "}
+            <span className="gradient-text">Master.</span>
           </h1>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 animate-fade-in" style={{ animationDelay: "0.2s" }}>
+          <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto mb-10 animate-fade-in drop-shadow-lg" style={{ animationDelay: "0.2s" }}>
             Upload subtitles from your favorite TV shows, get instant Arabic translations, and build vocabulary with AI-powered spaced repetition.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in" style={{ animationDelay: "0.3s" }}>
             <Link to="/dashboard">
-              <Button size="lg" className="gradient-bg text-primary-foreground border-0 text-base px-8 h-12 glow">
-                Start Learning Free <ChevronRight className="ml-1 w-4 h-4" />
+              <Button size="lg" className="gradient-bg text-primary-foreground border-0 text-base px-8 h-14 text-lg glow shadow-2xl">
+                Start Watching Free <ChevronRight className="ml-1 w-5 h-5" />
               </Button>
             </Link>
-            <Button variant="outline" size="lg" className="text-base px-8 h-12">
-              <Play className="mr-2 w-4 h-4" /> Watch Demo
+            <Button variant="outline" size="lg" className="text-base px-8 h-14 text-lg bg-white/10 backdrop-blur-sm border-white/20 text-white hover:bg-white/20 hover:text-white">
+              <Play className="mr-2 w-5 h-5" /> Watch Demo
             </Button>
           </div>
-          <div className="flex items-center justify-center gap-6 mt-10 text-sm text-muted-foreground animate-fade-in" style={{ animationDelay: "0.4s" }}>
+          <div className="flex items-center justify-center gap-6 mt-10 text-sm text-white/70 animate-fade-in" style={{ animationDelay: "0.4s" }}>
             <span className="flex items-center gap-1"><Star className="w-4 h-4 text-accent fill-accent" /> 4.9/5 rating</span>
             <span>•</span>
             <span className="flex items-center gap-1"><Globe className="w-4 h-4" /> 10k+ learners</span>
           </div>
+        </div>
+      </section>
+
+      {/* Popular Shows — Netflix-style horizontal scroll */}
+      <section id="shows" className="py-16 px-4 -mt-20 relative z-20">
+        <div className="container max-w-7xl">
+          <div className="flex items-center gap-3 mb-8">
+            <Film className="w-5 h-5 text-accent" />
+            <h2 className="text-2xl md:text-3xl font-bold">Learn from What You Love</h2>
+          </div>
+          <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide snap-x snap-mandatory -mx-4 px-4">
+            {shows.map((show, i) => (
+              <Link
+                to="/dashboard"
+                key={i}
+                className="group relative flex-shrink-0 w-[200px] sm:w-[240px] md:w-[280px] snap-start"
+              >
+                <div className="relative aspect-[2/3] rounded-xl overflow-hidden shadow-2xl transition-all duration-500 group-hover:scale-105 group-hover:shadow-primary/20">
+                  <img
+                    src={show.image}
+                    alt={show.name}
+                    className="absolute inset-0 w-full h-full object-cover"
+                    loading="lazy"
+                    width={280}
+                    height={420}
+                  />
+                  {/* Gradient overlay at bottom */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
+                  {/* Word count badge */}
+                  <div className="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-sm border border-white/10">
+                    <span className="text-xs font-semibold text-white">{show.words}</span>
+                  </div>
+                  {/* Info at bottom */}
+                  <div className="absolute bottom-0 left-0 right-0 p-4">
+                    <h3 className="font-bold text-lg text-white mb-0.5">{show.name}</h3>
+                    <p className="text-sm text-white/60">{show.genre}</p>
+                  </div>
+                  {/* Hover overlay */}
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 bg-primary/30 backdrop-blur-[2px]">
+                    <Button size="sm" className="gradient-bg text-primary-foreground border-0 shadow-xl">
+                      Start Learning
+                    </Button>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+          <p className="text-sm text-muted-foreground mt-6 text-center">
+            Works with any .srt file — from Netflix, YouTube, or your personal collection
+          </p>
         </div>
       </section>
 
@@ -143,99 +201,6 @@ export default function LandingPage() {
                 </div>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Popular Shows */}
-      <section className="py-20 px-4">
-        <div className="container max-w-6xl">
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-accent/10 text-accent text-sm font-medium mb-4">
-              <Film className="w-3.5 h-3.5" />
-              Learn from What You Love
-            </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Popular Shows & Movies</h2>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              Thousands of learners are already mastering English with subtitles from these hit series and films
-            </p>
-          </div>
-
-          <Carousel
-            opts={{ loop: true, align: "start" }}
-            plugins={[
-              Autoplay({
-                delay: 3000,
-              }),
-            ]}
-            className="w-full"
-          >
-            <CarouselContent className="-ml-2 md:-ml-4">
-              {shows.map((show, i) => (
-                <CarouselItem key={i} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
-                  <div className="group relative overflow-hidden rounded-2xl border border-border bg-card transition-all duration-300 hover:-translate-y-2 hover:shadow-xl h-full">
-                    {/* Image */}
-                    <div className="relative h-48 overflow-hidden">
-                      <img 
-                        src={show.image} 
-                        alt={show.name}
-                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-                        loading="lazy"
-                        width={400}
-                        height={200}
-                      />
-                      {/* Gradient Overlay */}
-                      <div className={`absolute inset-0 bg-gradient-to-t ${show.color} opacity-60 mix-blend-multiply`} />
-                      <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
-                      
-                      {/* Word Count Badge */}
-                      <div className="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-background/80 backdrop-blur-sm border border-border/50">
-                        <span className="text-xs font-semibold">{show.words} words</span>
-                      </div>
-                    </div>
-
-                    {/* Content */}
-                    <div className="p-5">
-                      <div className="flex items-start justify-between mb-2">
-                        <div>
-                          <h3 className="font-bold text-lg group-hover:text-primary transition-colors">{show.name}</h3>
-                          <p className="text-sm text-muted-foreground">{show.genre}</p>
-                        </div>
-                        <div className="flex items-center gap-1 text-accent">
-                          <Tv className="w-4 h-4" />
-                        </div>
-                      </div>
-                      
-                      <div className="flex items-center gap-2 mt-4">
-                        <div className="flex -space-x-2">
-                          {[1,2,3].map((n) => (
-                            <div key={n} className="w-6 h-6 rounded-full bg-gradient-to-br from-primary to-accent border-2 border-background" />
-                          ))}
-                        </div>
-                        <span className="text-xs text-muted-foreground">{100 + i * 50}+ active learners</span>
-                      </div>
-                    </div>
-
-                    {/* Hover CTA */}
-                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-background/60 backdrop-blur-sm">
-                      <Link to="/dashboard">
-                        <Button size="sm" className="gradient-bg text-primary-foreground border-0">
-                          Start Learning
-                        </Button>
-                      </Link>
-                    </div>
-                  </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <CarouselPrevious className="hidden md:flex" />
-            <CarouselNext className="hidden md:flex" />
-          </Carousel>
-
-          <div className="text-center mt-10">
-            <p className="text-sm text-muted-foreground">
-              Works with any .srt file — from Netflix, YouTube, or your personal collection
-            </p>
           </div>
         </div>
       </section>
