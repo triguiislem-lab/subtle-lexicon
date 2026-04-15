@@ -145,6 +145,89 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* Popular Shows */}
+      <section className="py-20 px-4">
+        <div className="container max-w-6xl">
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-accent/10 text-accent text-sm font-medium mb-4">
+              <Film className="w-3.5 h-3.5" />
+              Learn from What You Love
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Popular Shows & Movies</h2>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+              Thousands of learners are already mastering English with subtitles from these hit series and films
+            </p>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {shows.map((show, i) => (
+              <div 
+                key={i} 
+                className="group relative overflow-hidden rounded-2xl border border-border bg-card transition-all duration-300 hover:-translate-y-2 hover:shadow-xl"
+                style={{ animationDelay: `${i * 0.1}s` }}
+              >
+                {/* Image */}
+                <div className="relative h-48 overflow-hidden">
+                  <img 
+                    src={show.image} 
+                    alt={show.name}
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    loading="lazy"
+                    width={400}
+                    height={200}
+                  />
+                  {/* Gradient Overlay */}
+                  <div className={`absolute inset-0 bg-gradient-to-t ${show.color} opacity-60 mix-blend-multiply`} />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
+                  
+                  {/* Word Count Badge */}
+                  <div className="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-background/80 backdrop-blur-sm border border-border/50">
+                    <span className="text-xs font-semibold">{show.words} words</span>
+                  </div>
+                </div>
+
+                {/* Content */}
+                <div className="p-5">
+                  <div className="flex items-start justify-between mb-2">
+                    <div>
+                      <h3 className="font-bold text-lg group-hover:text-primary transition-colors">{show.name}</h3>
+                      <p className="text-sm text-muted-foreground">{show.genre}</p>
+                    </div>
+                    <div className="flex items-center gap-1 text-accent">
+                      <Tv className="w-4 h-4" />
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-center gap-2 mt-4">
+                    <div className="flex -space-x-2">
+                      {[1,2,3].map((n) => (
+                        <div key={n} className="w-6 h-6 rounded-full bg-gradient-to-br from-primary to-accent border-2 border-background" />
+                      ))}
+                    </div>
+                    <span className="text-xs text-muted-foreground">{100 + i * 50}+ active learners</span>
+                  </div>
+                </div>
+
+                {/* Hover CTA */}
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-background/60 backdrop-blur-sm">
+                  <Link to="/dashboard">
+                    <Button size="sm" className="gradient-bg text-primary-foreground border-0">
+                      Start Learning
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="text-center mt-10">
+            <p className="text-sm text-muted-foreground">
+              Works with any .srt file — from Netflix, YouTube, or your personal collection
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* Pricing */}
       <section id="pricing" className="py-20 px-4">
         <div className="container max-w-5xl">
