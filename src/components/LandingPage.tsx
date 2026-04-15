@@ -1,7 +1,14 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { BookOpen, Upload, Brain, Trophy, Sparkles, Play, ChevronRight, Star, Zap, Globe, Check } from "lucide-react";
+import { BookOpen, Upload, Brain, Trophy, Sparkles, Play, ChevronRight, Star, Zap, Globe, Check, Film, Tv } from "lucide-react";
 import { Button } from "@/components/ui/button";
+
+import suitsImg from "@/assets/show-suits.jpg";
+import breakingBadImg from "@/assets/show-breaking-bad.jpg";
+import strangerThingsImg from "@/assets/show-stranger-things.jpg";
+import friendsImg from "@/assets/show-friends.jpg";
+import gotImg from "@/assets/show-game-of-thrones.jpg";
+import officeImg from "@/assets/show-office.jpg";
 
 const features = [
   { icon: Upload, title: "Upload Subtitles", desc: "Drop an .srt file or paste text from your favorite show" },
@@ -15,6 +22,15 @@ const steps = [
   { num: "02", title: "Learn", desc: "Tap highlighted words to see translations" },
   { num: "03", title: "Practice", desc: "Take quizzes and review with spaced repetition" },
   { num: "04", title: "Master", desc: "Track your progress and grow your vocabulary" },
+];
+
+const shows = [
+  { name: "Suits", genre: "Legal Drama", words: "2,400+", image: suitsImg, color: "from-blue-600/80 to-amber-500/80" },
+  { name: "Breaking Bad", genre: "Crime Drama", words: "3,100+", image: breakingBadImg, color: "from-green-600/80 to-yellow-500/80" },
+  { name: "Stranger Things", genre: "Sci-Fi", words: "1,900+", image: strangerThingsImg, color: "from-purple-600/80 to-red-500/80" },
+  { name: "Friends", genre: "Comedy", words: "2,800+", image: friendsImg, color: "from-amber-500/80 to-orange-500/80" },
+  { name: "Game of Thrones", genre: "Fantasy", words: "3,500+", image: gotImg, color: "from-blue-800/80 to-cyan-500/80" },
+  { name: "The Office", genre: "Workplace Comedy", words: "2,200+", image: officeImg, color: "from-gray-600/80 to-blue-400/80" },
 ];
 
 const plans = [
